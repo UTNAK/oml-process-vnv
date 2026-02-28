@@ -10,7 +10,7 @@ This repository has a template [OML](https://github.com/opencaesar/oml) project.
 
 ## Clone
 ```
-  git clone https://github.com/opencaesar/oml-template.git
+  git clone https://github.com/UTNAK/oml-process-vnv.git
   cd oml-template
 ```
 
