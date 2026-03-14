@@ -1,0 +1,58 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/example/vocabulary/purchasingprocess#> as purchacingprocess {
+
+	extends <http://purl.org/dc/elements/1.1/> as dc
+
+	// Example aspect
+	aspect A
+
+	// Example concept
+	concept C < A
+
+	// Example relation entity
+	relation entity R [
+		from C
+		to A
+		forward r
+	]
+
+	aspect Employee
+
+	aspect Event
+
+	relation entity ResponsibleFor [
+		from Employee
+		to Event
+		forward responsibleFor
+		reverse isResponsibilityOf
+	]
+
+	concept Requester < Employee
+
+	concept Approver < Employee
+
+	concept WarehouseStaff < Employee
+
+	concept PurchaseManager < Employee
+
+	concept WarehouseManager < Employee
+
+	concept PurchaseRequest < Event // 購買申請
+
+	concept PurchaseApproval < Event // 購買承認
+
+	concept GoodsReceived < Event [ // 物品受領
+	// ResponsibleFor(WarehouseStaff, GoodsReceived)
+		// restricts all isResponsibilityOf to WarehouseStaff
+	]
+
+	relation entity relationEntity [
+		from Approver
+		to WarehouseStaff
+		forward relationEntity1
+	]
+
+	concept Person
+}

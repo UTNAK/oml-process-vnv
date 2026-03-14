@@ -5,6 +5,6 @@ vocabulary bundle <http://opencaesar.io/example/vocabulary/bundle#> as vocabular
 		
 	includes <http://purl.org/dc/elements/1.1/> as dc	
 
-	includes <http://opencaesar.io/example/vocabulary/vocabulary1#>
+	includes <http://opencaesar.io/example/vocabulary/purchasingprocess#>
 
 }

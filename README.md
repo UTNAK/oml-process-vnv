@@ -107,3 +107,60 @@ The name of this project is `oml-template`. You can change it to your own projec
 - `src/oml/*` (namespaces of ontologies)
 - `src/sparcl/*` (namespaces of ontologies)
 - `src/shacl/*` (namespaces of ontologies)
+
+
+## Modeling-1: Create Vocabulary
+
+## Modeling-2: Create Descriptions
+
+```
+@dc:title "Example Description"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+description <http://opencaesar.io/example/description/description1#> as description1 {
+	
+	uses <http://purl.org/dc/elements/1.1/> as dc
+
+	uses <http://opencaesar.io/example/vocabulary/purchasingprocess#> as purchacingprocess
+
+
+	instance karen : purchacingprocess:Employee[
+		purchacingprocess:responsibleFor gr1
+	]
+
+	instance gr1 : purchacingprocess:Event
+
+}
+```
+
+## Query-1
+
+```
+PREFIX purchasingprocess: <http://opencaesar.io/example/vocabulary/purchasingprocess#>
+SELECT *
+WHERE {
+  # ResponsibleFor(WarehouseStaff, GoodsReceived)
+  ?WarehouseStaff purchasingprocess:responsibleFor ?GoodsReceived
+}
+```
+
+## Query-2
+```
+PREFIX purchasingprocess: <http://opencaesar.io/example/vocabulary/purchasingprocess#>
+SELECT *
+WHERE {
+  # ResponsibleFor(WarehouseStaff, GoodsReceived)
+  #?WarehouseStaff purchasingprocess:responsibleFor ?GoodsReceived
+  ?WarehouseStaff a purchasingprocess:WarehouseStaff;
+  		purchasingprocess:responsibleFor ?GoodsReceived
+  
+}
+```
+
+
+## Add Restrictions
+```
+	concept GoodsReceived < Event[//物品受領
+		restricts all isResponsibilityOf to WarehouseStaff
+	]
+```
